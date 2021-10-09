@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -129,11 +130,17 @@ public class Finances extends AppCompatActivity {
             LinearLayout hor_lay= new LinearLayout(lin_lay.getContext());
             lin_lay.addView(hor_lay);
             hor_lay.setOrientation(LinearLayout.HORIZONTAL);
+            Space space=new Space(hor_lay.getContext());
+            space.setMinimumWidth(300);
+            hor_lay.addView(space);
             EditText person = new EditText(hor_lay.getContext());
             person.setText(array_keys.get(i));
             person.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             person.setInputType(InputType.TYPE_NULL);
             hor_lay.addView(person);
+            Space space2=new Space(hor_lay.getContext());
+            space2.setMinimumWidth(300);
+            hor_lay.addView(space2);
             EditText money = new EditText(hor_lay.getContext());
             money.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             money.setText(Integer.toString(le_array.get(i))+"Ft");

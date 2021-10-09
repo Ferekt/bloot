@@ -27,6 +27,7 @@ import okhttp3.Response;
 
 public class Home_activity extends AppCompatActivity {
     EditText Value;
+    boolean done;
     Integer value = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,10 @@ public class Home_activity extends AppCompatActivity {
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
         postRequest(MainActivity.postUrl, body);
-        while (value == null){
+        while (!done){
             Log.d("wait", "onStart: wait");
         }
+        done=false;
         Value.setText(value+" Ft");
     }
 
@@ -145,6 +147,7 @@ public class Home_activity extends AppCompatActivity {
                 for (Integer j:le_array) {
                     value+=j;
                 }
+                done=true;
             }
         });
     }
