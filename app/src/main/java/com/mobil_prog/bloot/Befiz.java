@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -154,6 +155,7 @@ public class Befiz extends AppCompatActivity {
                 CheckBox cb = new CheckBox(linlay.getContext());
                 cb.setButtonDrawable(R.drawable.checkbox_selector);
                 cb.setText(le_array.get(j));
+                cb.setTextColor(Color.BLACK);
                 linlay.addView(cb, 200, 100);
                 CBT.add(cb);
             }
