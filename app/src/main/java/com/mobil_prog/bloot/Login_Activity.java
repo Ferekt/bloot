@@ -29,9 +29,7 @@ import okhttp3.Response;
 public class Login_Activity extends AppCompatActivity {
     String username;
     String password;
-
-    boolean good = false;
-    Intent intento = new Intent(this, Home_activity.class);
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
