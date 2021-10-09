@@ -151,7 +151,7 @@ public class Befiz extends AppCompatActivity {
     public void handleRadio(List<String> le_array,LinearLayout linlay){
         List<CheckBox>CBT= new ArrayList<CheckBox>();
         for(int j=0;j<le_array.size();j++){
-            if(!le_array.get(j).equals(MainActivity.user)) {
+            //if(!le_array.get(j).equals(MainActivity.user)) {
                 CheckBox cb = new CheckBox(linlay.getContext());
                 cb.setButtonDrawable(R.drawable.checkbox_selector);
                 cb.setText(le_array.get(j));
@@ -160,21 +160,21 @@ public class Befiz extends AppCompatActivity {
 
                 linlay.addView(cb, 200, 100);
                 CBT.add(cb);
-            }
+            //}
         }
         CBA=CBT;
     }
     public void pay(View v){
         JSONObject reg_form = new JSONObject();
         EditText pay = findViewById(R.id.amount);
-        int j=1;
+        int j=0;
         for (CheckBox c:CBA) {
             if (c.isChecked()) j++;
         }
         int value = Integer.parseInt(String.valueOf(pay.getText()))/j;
         value=5*(Math.round(value/5));
         for (CheckBox c:CBA) {
-            if (c.isChecked()) {
+            if (c.isChecked()&&!c.getText().equals(MainActivity.user)) {
                 try {
                     reg_form.put("subject", "update");
                     reg_form.put("sender", MainActivity.user);
