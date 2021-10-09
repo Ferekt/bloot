@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.text.InputType;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -130,10 +131,12 @@ public class Finances extends AppCompatActivity {
             hor_lay.setOrientation(LinearLayout.HORIZONTAL);
             EditText person = new EditText(hor_lay.getContext());
             person.setText(array_keys.get(i));
+            person.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             person.setInputType(InputType.TYPE_NULL);
             hor_lay.addView(person);
             EditText money = new EditText(hor_lay.getContext());
-            money.setText(Integer.toString(le_array.get(i)));
+            money.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            money.setText(Integer.toString(le_array.get(i))+"Ft");
             money.setInputType(InputType.TYPE_NULL);
             hor_lay.addView(money);
         }
