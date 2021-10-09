@@ -14,12 +14,14 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="448dp"
         android:layout_marginEnd="100dp"
-        android:backgroundTint="@color/button_background_color"
         android:onClick="register"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_background"
         android:text="Sign Up"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/Login"
@@ -28,8 +30,10 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="100dp"
-        android:backgroundTint="@color/button_background_color"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_background"
         android:onClick="login"
+        android:textColor="@color/white"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
