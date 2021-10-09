@@ -27,8 +27,8 @@ import okhttp3.Response;
 
 
 public class Login_Activity extends AppCompatActivity {
-    String username;
-    String password;
+    String username=null;
+    String password=null;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,10 @@ public class Login_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
     @Override
-    protected void onStart(){
-
-        super.onStart();
+    protected void onStop(){
+        super.onStop();
+        username=null;
+        password=null;
     }
     public void login(View v) {
         EditText log_username = findViewById(R.id.Login_Username);
