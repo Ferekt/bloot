@@ -89,11 +89,6 @@ public class Login_Activity extends AppCompatActivity {
             }
         });
     }
-    public void to_register(View v){
-        Intent intent = new Intent(this, Register_Activity.class);
-        startActivity(intent);
-        this.finish();
-    }
     public void to_Home(View v){
         Intent intent = new Intent(this, Home_activity.class);
         startActivity(intent);

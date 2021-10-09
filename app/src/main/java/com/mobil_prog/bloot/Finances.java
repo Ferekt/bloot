@@ -133,7 +133,7 @@ public class Finances extends AppCompatActivity {
             person.setInputType(InputType.TYPE_NULL);
             hor_lay.addView(person);
             EditText money = new EditText(hor_lay.getContext());
-            money.setText(Integer.toString(le_array.get(i)));
+            money.setText(Integer.toString(le_array.get(i))+"Ft");
             money.setInputType(InputType.TYPE_NULL);
             hor_lay.addView(money);
         }
