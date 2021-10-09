@@ -152,6 +152,7 @@ public class Befiz extends AppCompatActivity {
         for(int j=0;j<le_array.size();j++){
             if(!le_array.get(j).equals(MainActivity.user)) {
                 CheckBox cb = new CheckBox(linlay.getContext());
+                cb.setButtonDrawable(R.drawable.checkbox_selector);
                 cb.setText(le_array.get(j));
                 linlay.addView(cb, 200, 100);
                 CBT.add(cb);
