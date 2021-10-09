@@ -3,18 +3,19 @@ package com.mobil_prog.bloot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.MailTo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Entity;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,16 +26,20 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Home_activity extends AppCompatActivity {
-
+    EditText Value;
+    Integer value = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Value=findViewById(R.id.Value);
+        value =null;
         JSONObject reg_form = new JSONObject();
         while (MainActivity.user == null) {
         }
@@ -48,7 +53,10 @@ public class Home_activity extends AppCompatActivity {
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
         postRequest(MainActivity.postUrl, body);
-
+        while (value == null){
+            Log.d("wait", "onStart: wait");
+        }
+        Value.setText(value+" Ft");
     }
 
     public void logout(View v) {
@@ -113,10 +121,35 @@ public class Home_activity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+                Iterator<String> keys = le_Json.keys();
+                List<Integer> le_array = new ArrayList<Integer>();
+                int i = 0;
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    if (!(key.equals("id") || key.equals("username") || key.equals("group"))) {
+                        if (key.contains("debit")) {
+                            try {
+                                le_array.add(-1*le_Json.getInt(key));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            try {
+                                le_array.add(le_Json.getInt(key));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+                value=0;
+                for (Integer j:le_array) {
+                    value+=j;
+                }
             }
         });
     }
+
     public void delete(View v) {
         JSONObject reg_form = new JSONObject();
         while (MainActivity.user == null) {

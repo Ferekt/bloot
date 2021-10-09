@@ -12,6 +12,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -22,7 +25,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Finances extends AppCompatActivity {
-
+    JSONObject personal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,14 @@ public class Finances extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e("bree", "onResponse:, "+response.body().string().trim() );
+                JSONObject le_Json = null;
+                String le_String ="";
+                try {
+                    le_Json = new JSONObject(response.body().string());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                personal=le_Json;
             }
         });
     }
