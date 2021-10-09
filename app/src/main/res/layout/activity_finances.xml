@@ -16,7 +16,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck"/>
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/lin_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <Button
         android:id="@+id/Back_from_finances"
@@ -32,13 +39,12 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/finances_text"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="150dp"
-        android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
