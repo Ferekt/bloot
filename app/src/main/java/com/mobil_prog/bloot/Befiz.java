@@ -156,6 +156,8 @@ public class Befiz extends AppCompatActivity {
                 cb.setButtonDrawable(R.drawable.checkbox_selector);
                 cb.setText(le_array.get(j));
                 cb.setTextColor(Color.BLACK);
+                cb.setTextSize(30);
+
                 linlay.addView(cb, 200, 100);
                 CBT.add(cb);
             }
