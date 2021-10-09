@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bloot_background"
     tools:context=".Join">
 
     <EditText
@@ -15,6 +16,9 @@
         android:layout_marginEnd="150dp"
         android:ems="10"
         android:hint="Group name"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +34,9 @@
         android:layout_marginEnd="150dp"
         android:text="Join Group"
         android:onClick="Join_group"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_name" />
@@ -42,8 +49,19 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="150dp"
         android:text="Back"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_background"
         android:onClick="Back_from_join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Join_group" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="77dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
