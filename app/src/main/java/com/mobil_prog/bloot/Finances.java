@@ -3,6 +3,7 @@ package com.mobil_prog.bloot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.text.InputType;
@@ -131,11 +132,12 @@ public class Finances extends AppCompatActivity {
             lin_lay.addView(hor_lay);
             hor_lay.setOrientation(LinearLayout.HORIZONTAL);
             Space space=new Space(hor_lay.getContext());
-            space.setMinimumWidth(300);
+            space.setMinimumWidth(200);
             hor_lay.addView(space);
             EditText person = new EditText(hor_lay.getContext());
             person.setText(array_keys.get(i));
             person.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            person.setTextColor(Color.BLACK);
             person.setInputType(InputType.TYPE_NULL);
             hor_lay.addView(person);
             Space space2=new Space(hor_lay.getContext());
@@ -145,6 +147,7 @@ public class Finances extends AppCompatActivity {
             money.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             money.setText(Integer.toString(le_array.get(i))+"Ft");
             money.setInputType(InputType.TYPE_NULL);
+            money.setTextColor(Color.BLACK);
             hor_lay.addView(money);
         }
     }
