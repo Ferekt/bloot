@@ -16,30 +16,35 @@
         tools:targetApi="m" >
         <activity
             android:name=".Befiz"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Join"
-            android:exported="true" />
-        <activity
-            android:name=".Jion"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Stats"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Finances"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Home_activity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Login_Activity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Register_Activity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

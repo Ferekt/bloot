@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bloot_background"
     tools:context=".Stats">
 
     <Button
@@ -13,9 +14,26 @@
         android:layout_marginStart="150dp"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="36dp"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_background"
         android:text="Back"
         android:onClick="Back_from_stats"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.jjoe64.graphview.GraphView
+        android:backgroundTint="@color/black"
+        android:id="@+id/graph"
+        android:layout_width="300dp"
+        android:foregroundTint="@color/black"
+        android:layout_height="300dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/Back_from_stats"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
