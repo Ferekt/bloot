@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bloot_background"
     tools:context=".Home_activity">
 
     <Button
@@ -12,6 +13,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="350dp"
         android:text="out"
+        android:backgroundTint="@color/button_background_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,11 +24,14 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="320dp"
         android:layout_marginEnd="150dp"
-        android:text="Finances"
+        android:backgroundTint="@color/button_background_color"
+
         android:onClick="to_finances"
+        android:text="Finances"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +42,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="100dp"
+        android:backgroundTint="@color/button_background_color"
         android:ems="10"
         android:inputType="none"
         android:minHeight="48dp"
@@ -51,10 +57,11 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="150dp"
-        android:text="Befizetés"
+        android:backgroundTint="@color/button_background_color"
         android:onClick="to_befiz"
+        android:text="Befizetés"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Finances" />
@@ -64,10 +71,12 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="150dp"
-        android:text="Stats"
+        android:backgroundTint="@color/button_background_color"
+
         android:onClick="to_stats"
+        android:text="Stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Befiz" />
@@ -77,10 +86,11 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/button_background_color"
         android:layout_marginEnd="150dp"
-        android:text="Join"
         android:onClick="to_join"
+        android:text="Join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Stats" />
@@ -92,10 +102,19 @@
         android:layout_marginStart="150dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="150dp"
+        android:backgroundTint="@color/button_background_color"
         android:text="Delete"
         android:onClick="delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Join" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="254dp"
+        android:layout_height="121dp"
+        app:srcCompat="@drawable/bloot_name_inapp"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
