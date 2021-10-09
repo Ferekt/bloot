@@ -2,6 +2,7 @@ package com.mobil_prog.bloot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,3 +29,29 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+   /* AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+                builder.setTitle("Are you sure?");
+                builder.setMessage("All data will be deleted from the phone \nit cannot be reversed");
+                builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+        FileOutputStream fileout= null;
+        try {
+        fileout = context.openFileOutput("Save.txt",MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+        e.printStackTrace();
+        }
+        try {
+        fileout.write("".getBytes());
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+        //Toast.makeText(this,"Saved to " + getFilesDir() + "/" + "Alcohol.txt",Toast.LENGTH_LONG).show();
+        try {
+        fileout.close();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }*/
