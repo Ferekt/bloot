@@ -4,31 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bloot_background"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/RegButton"
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="100dp"
-        android:text="Register"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="55dp"
+        android:backgroundTint="@color/button_background_color"
         android:onClick="register"
+        android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Login"
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="100dp"
-        android:text="Login"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="55dp"
+        android:backgroundTint="@color/button_background_color"
         android:onClick="login"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegButton" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="95dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bloot_inapp_transp_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
