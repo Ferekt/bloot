@@ -110,7 +110,6 @@ public class Befiz extends AppCompatActivity {
                }
                Iterator<String>keys= le_Json.keys();
                List<String>le_array=new ArrayList<String>();
-               int i = 0;
                while (keys.hasNext()){
                    String key= keys.next();
                    try {

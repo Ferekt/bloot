@@ -123,7 +123,6 @@ public class Home_activity extends AppCompatActivity {
                 }
                 Iterator<String> keys = le_Json.keys();
                 List<Integer> le_array = new ArrayList<Integer>();
-                int i = 0;
                 while (keys.hasNext()) {
                     String key = keys.next();
                     if (!(key.equals("id") || key.equals("username") || key.equals("group"))) {
