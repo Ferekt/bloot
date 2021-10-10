@@ -69,19 +69,20 @@ public class Join extends AppCompatActivity {
 
             @Override
             public void onFailure(Call call, IOException e) {
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Join.this, "Cannot reach server", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
-                        try {
-                            Toast.makeText(Join.this, response.body().string().trim(), Toast.LENGTH_SHORT).show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        public void run() {
+                            Toast.makeText(Join.this, "You have joined a group", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

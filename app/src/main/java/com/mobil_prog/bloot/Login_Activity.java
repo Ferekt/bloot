@@ -29,7 +29,7 @@ import okhttp3.Response;
 public class Login_Activity extends AppCompatActivity {
     String username=null;
     String password=null;
-    
+    boolean fail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +59,14 @@ public class Login_Activity extends AppCompatActivity {
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
         postRequest(MainActivity.postUrl, body);
-        to_Home(v);
+        double startTime= System.nanoTime();
+        double elapsedTime= 0;
+        while (MainActivity.user == null&& elapsedTime<10000) {
+            elapsedTime=(System.nanoTime()-startTime)/1000000;
+        }
+        if (!(MainActivity.user== null)) {
+            to_Home(v);
+        }
     }
     public void postRequest(String postUrl,RequestBody postbody){
         OkHttpClient client = new OkHttpClient();
@@ -78,13 +85,26 @@ public class Login_Activity extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 call.cancel();
                 Log.d("Fail",e.getMessage());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Login_Activity.this, "Cannot reach server", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-            String le_response= response.body().string().trim();
-            if(le_response.equals("ok")){
-                MainActivity.user=username;
+                String le_response= response.body().string().trim();
+                if(le_response.equals("ok")){
+                    MainActivity.user=username;
+                 }else{
+                      runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Login_Activity.this, "Failed to log in", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             }
         });

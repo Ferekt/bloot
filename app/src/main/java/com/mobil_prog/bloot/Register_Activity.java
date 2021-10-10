@@ -25,7 +25,6 @@ import okhttp3.Response;
 
 public class Register_Activity extends AppCompatActivity {
     boolean gut;
-    boolean thread_finish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +83,12 @@ public class Register_Activity extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 call.cancel();
                 Log.d("Fail",e.getMessage());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Register_Activity.this, "Cannot reach server", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -94,12 +99,11 @@ public class Register_Activity extends AppCompatActivity {
                     public void run() {
                         Log.e("g", "run: "+"bree");
                         if (reg_response.equals("ok")){
-                            Toast.makeText(Register_Activity.this,"You in",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register_Activity.this,"You have been registered",Toast.LENGTH_SHORT).show();
                             gut=true;
                         }else{
-                            Toast.makeText(Register_Activity.this,"You not in",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register_Activity.this,"Registration failed",Toast.LENGTH_SHORT).show();
                         }
-                        thread_finish=true;
                     }
                 });
             }

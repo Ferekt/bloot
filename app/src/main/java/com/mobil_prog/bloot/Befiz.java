@@ -1,8 +1,10 @@
 package com.mobil_prog.bloot;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -57,24 +59,37 @@ public class Befiz extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         JSONObject reg_form = new JSONObject();
-        while(MainActivity.group==null){
-            Log.e("sad", "onStart: "+"bree");
+        while (MainActivity.group == null) {
+            Log.e("sad", "onStart: " + "bree");
         }
         try {
             reg_form.put("subject", "group_data");
-            reg_form.put("group",MainActivity.group);
+            reg_form.put("group", MainActivity.group);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
         postRequest(MainActivity.postUrl, body);
-        while (lin_lay == null || stringList == null){
-            Log.e("sad", "onStart: "+"bree");
+        double startTime = System.nanoTime();
+        double elapsedTime = 0;
+        while ((lin_lay == null || stringList == null) && elapsedTime < 10000) {
+            elapsedTime = (System.nanoTime() - startTime) / 1000000;
+            Log.e("sad", "onStart: " + String.valueOf(elapsedTime));
         }
-        TextView group= findViewById(R.id.Groupname_bef);
-        group.setText(MainActivity.group);
-        handleRadio(stringList,lin_lay);
+        if (!(lin_lay == null || stringList == null)) {
+            TextView group = findViewById(R.id.Groupname_bef);
+            group.setText(MainActivity.group);
+            handleRadio(stringList, lin_lay);
+        }else{
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(Befiz.this, "Cannot reach server", Toast.LENGTH_SHORT).show();
+                }
+            });
+            Back_from_befiz(findViewById(R.id.Back_from_befiz));
+        }
     }
 
     public void Back_from_befiz (View v){
@@ -139,12 +154,22 @@ public class Befiz extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 call.cancel();
-                Log.d("Fail", e.getMessage());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Befiz.this, "Cannot reach server", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e("k",response.body().string().trim());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Befiz.this, "payment successful", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
@@ -184,8 +209,25 @@ public class Befiz extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
-                postRequest2(MainActivity.postUrl, body);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setTitle("Payment");
+                builder.setMessage("Do you wish to proceed?");
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
+                        postRequest2(MainActivity.postUrl, body);
+                        Back_from_befiz(findViewById(R.id.Back_from_befiz));
+                    }
+                });
+                builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
             }
         }
     }

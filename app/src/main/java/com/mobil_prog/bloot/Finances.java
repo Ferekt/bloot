@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,41 +43,57 @@ public class Finances extends AppCompatActivity {
         JSONObject reg_form = new JSONObject();
         try {
             reg_form.put("subject", "personal");
-            reg_form.put("username",MainActivity.user);
+            reg_form.put("username", MainActivity.user);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
         postRequest(MainActivity.postUrl, body);
-        while (personal==null) Log.e("sad", "onStart: " + "bree");
-        TextView t = findViewById(R.id.finances_text);
-        t.setText(Group);
-        Iterator<String> keys = personal.keys();
-        List<Integer> le_array = new ArrayList<Integer>();
-        List<String> array_keys=new ArrayList<String>();
-        while (keys.hasNext()) {
-            String key = keys.next();
-            if (!(key.equals("id") || key.equals("username") || key.equals("group"))) {
-                if (key.contains("debit")) {
-                    try {
-                        le_array.add(-1*personal.getInt(key));
-                        array_keys.add(key.substring(6,key.length()));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }else{
-                    try {
-                        array_keys.add(key);
-                        le_array.add(personal.getInt(key));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        postRequest(MainActivity.postUrl, body);
+        double startTime = System.nanoTime();
+        double elapsedTime = 0;
+        while (personal == null && elapsedTime < 10000) {
+            elapsedTime = (System.nanoTime() - startTime) / 1000000;
+        }
+        if (personal == null) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(Finances.this, "Cannot reach server", Toast.LENGTH_SHORT).show();
+                }
+            });
+            Back_from_finances(findViewById(R.id.Back_from_finances));
+        } else {
+
+            TextView t = findViewById(R.id.finances_text);
+            t.setText(Group);
+            Iterator<String> keys = personal.keys();
+            List<Integer> le_array = new ArrayList<Integer>();
+            List<String> array_keys = new ArrayList<String>();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                if (!(key.equals("id") || key.equals("username") || key.equals("group"))) {
+                    if (key.contains("debit")) {
+                        try {
+                            le_array.add(-1 * personal.getInt(key));
+                            array_keys.add(key.substring(6, key.length()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            array_keys.add(key);
+                            le_array.add(personal.getInt(key));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
+            lin_lay = findViewById(R.id.lin_lay);
+            UiBuilder(le_array, array_keys, lin_lay);
         }
-        lin_lay=findViewById(R.id.lin_lay);
-        UiBuilder(le_array,array_keys,lin_lay);
     }
 
     @Override

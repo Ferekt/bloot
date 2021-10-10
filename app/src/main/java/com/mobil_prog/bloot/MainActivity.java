@@ -20,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        user=null;
+        group=null;
+    }
+
     public void register(View v){
         Intent intent = new Intent(this, Register_Activity.class);
         startActivity(intent);
