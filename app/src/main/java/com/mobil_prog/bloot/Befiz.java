@@ -203,6 +203,7 @@ public class Befiz extends AppCompatActivity {
             person.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             person.setBackgroundResource(R.drawable.make_underline_disappear);
             person.setInputType(InputType.TYPE_NULL);
+            person.setTextColor(Color.BLACK);
             person.setFocusable(false);
             hor_lay.addView(person);
             Space space2=new Space(hor_lay.getContext());
