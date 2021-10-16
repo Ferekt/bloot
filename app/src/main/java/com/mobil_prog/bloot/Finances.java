@@ -146,6 +146,7 @@ public class Finances extends AppCompatActivity {
     public void UiBuilder(List<Integer> le_array,List<String>array_keys,LinearLayout lin_lay){
         for (int i=0;i< array_keys.size();i++){
             LinearLayout hor_lay= new LinearLayout(lin_lay.getContext());
+            hor_lay.setBackgroundResource(R.drawable.edit_text_back_ground);
             lin_lay.addView(hor_lay);
             hor_lay.setOrientation(LinearLayout.HORIZONTAL);
             Space space=new Space(hor_lay.getContext());
@@ -157,6 +158,7 @@ public class Finances extends AppCompatActivity {
             person.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             person.setTextColor(Color.BLACK);
             person.setInputType(InputType.TYPE_NULL);
+            person.setBackgroundResource(R.drawable.make_underline_disappear);
             hor_lay.addView(person);
             Space space2=new Space(hor_lay.getContext());
             space2.setMinimumWidth(200);
@@ -165,8 +167,16 @@ public class Finances extends AppCompatActivity {
             money.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
             money.setText(Integer.toString(le_array.get(i))+"Ft");
             money.setInputType(InputType.TYPE_NULL);
-            money.setTextColor(Color.BLACK);
+            if (le_array.get(i)<0) {
+                money.setTextColor(Color.RED);
+            }else{
+                money.setTextColor(Color.parseColor("#558d3a"));
+            }
+            money.setBackgroundResource(R.drawable.make_underline_disappear);
             hor_lay.addView(money);
+            Space space3=new Space(lin_lay.getContext());
+            space3.setMinimumWidth(50);
+            lin_lay.addView(space3);
         }
     }
 }
