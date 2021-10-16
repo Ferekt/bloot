@@ -142,11 +142,11 @@ public class Stats extends AppCompatActivity {
         for (Transaction t:tran) {
             if (t.sender.equals(MainActivity.user)){
                 value+=t.value;
-                series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+String.valueOf(t.date.getMinutes()),value));
+                series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+":"+String.valueOf(t.date.getMinutes()),value));
             }
             if (t.reciever.equals(MainActivity.user)){
                 value-=t.value;
-                series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+String.valueOf(t.date.getMinutes()),value));
+                series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+":"+String.valueOf(t.date.getMinutes()),value));
             }
             Log.e("value", "setBarCharts: "+String.valueOf(value));
         }
