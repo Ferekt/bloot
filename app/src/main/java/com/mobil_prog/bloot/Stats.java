@@ -35,7 +35,14 @@ import org.eazegraph.lib.models.StackedBarModel;
 
 public class Stats extends AppCompatActivity {
     public ArrayList<Transaction> tran_list = new ArrayList<Transaction>();
-    public void postRequest(String postUrl,RequestBody postbody){
+
+    @Override
+    protected void onStop() {
+        tran_list=null;
+        super.onStop();
+    }
+
+    public void postRequest(String postUrl, RequestBody postbody){
         OkHttpClient client = new OkHttpClient();
 
         final Request request = new Request.Builder()
