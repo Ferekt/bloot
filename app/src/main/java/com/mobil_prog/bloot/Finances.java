@@ -165,8 +165,15 @@ public class Finances extends AppCompatActivity {
             money.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
             money.setText(Integer.toString(le_array.get(i))+"Ft");
             money.setInputType(InputType.TYPE_NULL);
-            money.setTextColor(Color.BLACK);
+            if (le_array.get(i)<0) {
+                money.setTextColor(Color.RED);
+            }else{
+                money.setTextColor(Color.GREEN);
+            }
             hor_lay.addView(money);
+            Space space3=new Space(lin_lay.getContext());
+            space3.setMinimumWidth(50);
+            lin_lay.addView(space3);
         }
     }
 }
