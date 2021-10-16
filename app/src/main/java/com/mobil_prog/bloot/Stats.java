@@ -1,14 +1,12 @@
 package com.mobil_prog.bloot;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
@@ -19,9 +17,11 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Random;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -85,21 +85,27 @@ public class Stats extends AppCompatActivity {
                         jObj.add(asd);
                     }
 
-                    for (JSONObject temp: jObj)
-                    {
+                    for (JSONObject temp: jObj) {
                         String sender = temp.getString("sender");
                         String reciever = temp.getString("reciever");
                         int value = temp.getInt("value");
                         SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
                         Date date = formatter.parse(temp.getString("date"));
-                        Transaction tran = new Transaction(sender,value,reciever,date);
+                        Transaction tran = new Transaction(sender, value, reciever, date);
                         tran_list.add(tran);
-                        Log.e("DATE" ,date.toString());
+                        Log.e("DATE", date.toString());
                     }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            setPieChartData(tran_list);
+                        }
+                    });
 
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
+
             }
         });
     }
@@ -119,12 +125,14 @@ public class Stats extends AppCompatActivity {
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
         postRequest(MainActivity.postUrl, body);
+
     }
     public void Back_from_stats (View v){
         Intent intent = new Intent(this, Home_activity.class);
         startActivity(intent);
         this.finish();
     }
+
     public void setBarCharts(ArrayList<Transaction>tran, ValueLineChart mLineChart){
         List <String> names=new ArrayList<String>();
         ValueLineSeries series = new ValueLineSeries();
@@ -137,5 +145,49 @@ public class Stats extends AppCompatActivity {
             }
         }
     }
+}
+
+
+
+    public void setPieChartData(ArrayList<Transaction> list){
+        PieChart mPieChart = (PieChart) findViewById(R.id.piechart);
+        HashMap<String,Integer> PieData = new HashMap<>();
+        for (Transaction tran:tran_list)
+        {
+            if (PieData.containsKey(tran.sender))
+            {
+                int old_value = PieData.get(tran.sender);
+                old_value+=tran.value;
+                PieData.put(tran.sender,old_value);
+            }
+            else
+                {
+                    PieData.put(tran.sender,tran.value);
+                }
+        }
+        String color = "#FE6DA8";
+        ArrayList<String> colors = new ArrayList<>();
+        colors.add("#23351a");
+        colors.add("#3c612a");
+        colors.add("#558d3a");
+        colors.add("#0a0a0a");
+        int counter = 0;
+        for (String key : PieData.keySet() )
+        {
+
+            mPieChart.addPieSlice(new PieModel(key, PieData.get(key), Color.parseColor(colors.get(counter))));
+            counter++;
+            if(counter>colors.size()){counter=0;}
+
+
+        }
+
+
+
+
+
+        mPieChart.startAnimation();
+    }
+
 }
 
