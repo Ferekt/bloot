@@ -61,7 +61,7 @@ public class Login_Activity extends AppCompatActivity {
         postRequest(MainActivity.postUrl, body);
         double startTime= System.nanoTime();
         double elapsedTime= 0;
-        while (MainActivity.user == null&& elapsedTime<10000) {
+        while (MainActivity.user == null&& elapsedTime<5000) {
             elapsedTime=(System.nanoTime()-startTime)/1000000;
         }
         if (!(MainActivity.user== null)) {

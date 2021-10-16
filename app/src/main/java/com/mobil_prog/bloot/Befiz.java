@@ -11,11 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -183,7 +185,7 @@ public class Befiz extends AppCompatActivity {
                 cb.setTextColor(Color.BLACK);
                 cb.setTextSize(30);
 
-                linlay.addView(cb, 200, 100);
+            linlay.addView(cb, 200, 100);
                 CBT.add(cb);
             //}
         }
@@ -198,29 +200,34 @@ public class Befiz extends AppCompatActivity {
         }
         int value = Integer.parseInt(String.valueOf(pay.getText()))/j;
         value=5*(Math.round(value/5));
-        for (CheckBox c:CBA) {
-            if (c.isChecked()&&!c.getText().equals(MainActivity.user)) {
-                try {
-                    reg_form.put("subject", "update");
-                    reg_form.put("sender", MainActivity.user);
-                    reg_form.put("value", value);
-                    reg_form.put("name", c.getText());
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle("Payment");
-                builder.setMessage("Do you wish to proceed?");
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Payment");
+        builder.setMessage("Do you wish to proceed?");
+        int finalValue = value;
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
-                        postRequest2(MainActivity.postUrl, body);
-                        Back_from_befiz(findViewById(R.id.Back_from_befiz));
+                        for (CheckBox c : CBA) {
+                            if (c.isChecked() && !c.getText().equals(MainActivity.user)) {
+                                try {
+                                    reg_form.put("subject", "update");
+                                    reg_form.put("sender", MainActivity.user);
+                                    reg_form.put("value", finalValue);
+                                    reg_form.put("name", c.getText());
+                                    RequestBody body = RequestBody.create(MediaType.parse("application/json; charset= utf-8"), reg_form.toString());
+                                    postRequest2(MainActivity.postUrl, body);
+                                    Back_from_befiz(findViewById(R.id.Back_from_befiz));
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
                     }
-                });
+                    });
                 builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -229,6 +236,6 @@ public class Befiz extends AppCompatActivity {
                 });
                 builder.create().show();
             }
-        }
-    }
+
+
 }

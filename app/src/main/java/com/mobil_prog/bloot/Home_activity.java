@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
@@ -83,6 +84,7 @@ public class Home_activity extends AppCompatActivity {
             logout(findViewById(R.id.logout));
         }
         Value.setText(value+" Ft");
+        Value.setInputType(InputType.TYPE_NULL);
     }
 
     public void logout(View v) {
