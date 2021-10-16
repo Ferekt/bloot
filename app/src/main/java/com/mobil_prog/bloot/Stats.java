@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -99,6 +100,7 @@ public class Stats extends AppCompatActivity {
                         @Override
                         public void run() {
                             setPieChartData(tran_list);
+                            setBarCharts(tran_list,findViewById(R.id.cubiclinechart));
                         }
                     });
 
@@ -143,9 +145,14 @@ public class Stats extends AppCompatActivity {
                 value+=t.value;
                 series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+String.valueOf(t.date.getMinutes()),value));
             }
+            if (t.reciever.equals(MainActivity.user)){
+                value-=t.value;
+                series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+String.valueOf(t.date.getMinutes()),value));
+            }
         }
+        mLineChart.startAnimation();
     }
-}
+
 
 
 
@@ -174,18 +181,10 @@ public class Stats extends AppCompatActivity {
         int counter = 0;
         for (String key : PieData.keySet() )
         {
-
             mPieChart.addPieSlice(new PieModel(key, PieData.get(key), Color.parseColor(colors.get(counter))));
             counter++;
             if(counter>colors.size()){counter=0;}
-
-
         }
-
-
-
-
-
         mPieChart.startAnimation();
     }
 
