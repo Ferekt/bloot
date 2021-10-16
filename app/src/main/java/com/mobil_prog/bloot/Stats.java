@@ -22,7 +22,10 @@ import java.util.List;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -90,7 +93,8 @@ public class Stats extends AppCompatActivity {
                         String sender = temp.getString("sender");
                         String reciever = temp.getString("reciever");
                         int value = temp.getInt("value");
-                        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
+                        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
+                        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
                         Date date = formatter.parse(temp.getString("date"));
                         Transaction tran = new Transaction(sender, value, reciever, date);
                         tran_list.add(tran);

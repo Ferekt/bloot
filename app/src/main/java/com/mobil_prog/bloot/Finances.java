@@ -150,7 +150,7 @@ public class Finances extends AppCompatActivity {
             lin_lay.addView(hor_lay);
             hor_lay.setOrientation(LinearLayout.HORIZONTAL);
             Space space=new Space(hor_lay.getContext());
-            space.setMinimumWidth(200);
+            space.setMinimumWidth(120);
             hor_lay.addView(space);
             EditText person = new EditText(hor_lay.getContext());
             person.setWidth(200);
@@ -164,13 +164,14 @@ public class Finances extends AppCompatActivity {
             space2.setMinimumWidth(200);
             hor_lay.addView(space2);
             EditText money = new EditText(hor_lay.getContext());
-            money.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            money.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             money.setText(Integer.toString(le_array.get(i))+"Ft");
             money.setInputType(InputType.TYPE_NULL);
             if (le_array.get(i)<0) {
                 money.setTextColor(Color.RED);
             }else{
-                money.setTextColor(Color.parseColor("#558d3a"));
+                money.setText("+"+Integer.toString(le_array.get(i))+"Ft");
+                money.setTextColor(Color.parseColor("#1e450b"));
             }
             money.setBackgroundResource(R.drawable.make_underline_disappear);
             hor_lay.addView(money);

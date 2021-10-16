@@ -23,7 +23,10 @@
             android:id="@+id/lin_lay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_margin="25dp"
+            android:showDividers="middle"
+            android:divider="@drawable/margin_bree"
+            android:orientation="vertical"/>
     </ScrollView>
 
     <Button

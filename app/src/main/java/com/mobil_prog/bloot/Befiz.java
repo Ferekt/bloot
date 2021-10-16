@@ -186,6 +186,9 @@ public class Befiz extends AppCompatActivity {
             LinearLayout hor_lay= new LinearLayout(lin_lay.getContext());
             hor_lay.setBackgroundResource(R.drawable.edit_text_back_ground);
             lin_lay.addView(hor_lay);
+            Space space1=new Space(hor_lay.getContext());
+            space1.setMinimumWidth(30);
+            hor_lay.addView(space1);
             CheckBox cb = new CheckBox(linlay.getContext());
             cb.setButtonDrawable(R.drawable.checkbox_selector);
             cb.setText("");
@@ -195,7 +198,8 @@ public class Befiz extends AppCompatActivity {
             cb.setFocusable(false);
             hor_lay.addView(cb);
             Space space=new Space(hor_lay.getContext());
-            space.setMinimumWidth(200);
+            space.setMinimumWidth(450);
+
             hor_lay.addView(space);
             EditText person = new EditText(hor_lay.getContext());
             person.setLayoutParams(hor_lay.getLayoutParams());
@@ -221,7 +225,7 @@ public class Befiz extends AppCompatActivity {
             CBA.get(i).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     if (isChecked){
-                        textViewList.get(finalI).setTextColor(Color.parseColor("#558d3a"));
+                        //textViewList.get(finalI).setTextColor(Color.parseColor("#ffffff"));
                         linearLayoutList.get(finalI).setBackgroundResource(R.drawable.edit_text_bg_green);
                     }else{
                         textViewList.get(finalI).setTextColor(Color.BLACK);
