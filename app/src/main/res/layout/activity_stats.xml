@@ -27,32 +27,25 @@
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/piechart">
+        app:layout_constraintTop_toBottomOf="@+id/piechart"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <org.eazegraph.lib.charts.BarChart
-                android:id="@+id/barchart"
+            <org.eazegraph.lib.charts.ValueLineChart xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cubiclinechart"
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
-                android:padding="10dp"
-                app:egBarWidth="20dp"
-                app:egFixedBarWidth="true"
+                android:layout_height="200dp"
+                app:egCurveSmoothness="0.4"
+                app:egIndicatorLineColor="#FE6DA8"
                 app:egLegendHeight="40dp"
-                tools:layout_editor_absoluteX="-7dp"
-                tools:layout_editor_absoluteY="17dp" />
+                app:egShowStandardValue="true"
+                app:egUseCubic="true"
+                app:egUseOverlapFill="true" />
 
-            <org.eazegraph.lib.charts.StackedBarChart xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/stackedbarchart"
-                android:layout_width="match_parent"
-                android:layout_height="256dp"
-                android:padding="10dp"
-                app:egBarWidth="20dp"
-                app:egFixedBarWidth="true"
-                app:egLegendHeight="40dp" />
 
         </LinearLayout>
     </ScrollView>
