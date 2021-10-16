@@ -136,7 +136,6 @@ public class Stats extends AppCompatActivity {
     }
 
     public void setBarCharts(ArrayList<Transaction>tran, ValueLineChart mLineChart){
-        List <String> names=new ArrayList<String>();
         ValueLineSeries series = new ValueLineSeries();
         series.setColor(0xFF56B7F1);
         int value=0;
@@ -149,7 +148,9 @@ public class Stats extends AppCompatActivity {
                 value-=t.value;
                 series.addPoint(new ValueLinePoint(String.valueOf(t.date.getHours())+String.valueOf(t.date.getMinutes()),value));
             }
+            Log.e("value", "setBarCharts: "+String.valueOf(value));
         }
+        mLineChart.addSeries(series);
         mLineChart.startAnimation();
     }
 
