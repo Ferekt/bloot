@@ -11,11 +11,13 @@
         android:id="@+id/piechart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_marginTop="72dp"
         android:padding="8dp"
         app:egLegendTextSize="18sp"
         app:egUsePieRotation="true"
         app:egValueTextSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +47,7 @@
                 tools:layout_editor_absoluteX="-7dp"
                 tools:layout_editor_absoluteY="17dp" />
 
-            <org.eazegraph.lib.charts.StackedBarChart xmlns:app="http://schemas.android.com/apk/res-auto"
+            <org.eazegraph.lib.charts.StackedBarChart
                 android:id="@+id/stackedbarchart"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
@@ -75,6 +77,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="289dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="30dp"
+        android:editable="false"
+        android:inputType="none"
+        android:text="SUM total collective payment:"
+        android:textColor="#000000"
+        android:textSize="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
