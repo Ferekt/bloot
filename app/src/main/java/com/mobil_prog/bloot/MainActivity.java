@@ -12,7 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static String user=null;
-    public static String postUrl = "https://blootapi.herokuapp.com/";
+    //public static String postUrl = "https://blootapi.herokuapp.com/";
+    public static String postUrl = "http://192.168.0.136:5000";
     public static String group=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
