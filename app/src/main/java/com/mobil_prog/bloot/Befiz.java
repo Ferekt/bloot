@@ -1,23 +1,21 @@
 package com.mobil_prog.bloot;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +39,14 @@ public class Befiz extends AppCompatActivity {
     public LinearLayout lin_lay = null;
     public List<String> stringList= null;
     public List<CheckBox> CBA =null;
+    public List<TextView> textViewList = null;
+    public List<LinearLayout> linearLayoutList=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_befiz);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     @Override
@@ -55,6 +56,8 @@ public class Befiz extends AppCompatActivity {
         lin_lay=null;
         stringList= null;
         CBA=null;
+        textViewList = null;
+        linearLayoutList=null;
     }
 
     @Override
@@ -177,19 +180,56 @@ public class Befiz extends AppCompatActivity {
     }
     public void handleRadio(List<String> le_array,LinearLayout linlay){
         List<CheckBox>CBT= new ArrayList<CheckBox>();
+        List<TextView> textViews= new ArrayList<>();
+        List<LinearLayout>linearLayouts = new ArrayList<>();
         for(int j=0;j<le_array.size();j++){
-            //if(!le_array.get(j).equals(MainActivity.user)) {
-                CheckBox cb = new CheckBox(linlay.getContext());
-                cb.setButtonDrawable(R.drawable.checkbox_selector);
-                cb.setText(le_array.get(j));
-                cb.setTextColor(Color.BLACK);
-                cb.setTextSize(30);
-
-            linlay.addView(cb, 200, 100);
-                CBT.add(cb);
-            //}
+            LinearLayout hor_lay= new LinearLayout(lin_lay.getContext());
+            hor_lay.setBackgroundResource(R.drawable.edit_text_back_ground);
+            lin_lay.addView(hor_lay);
+            CheckBox cb = new CheckBox(linlay.getContext());
+            cb.setButtonDrawable(R.drawable.checkbox_selector);
+            cb.setText("");
+            cb.setTextColor(Color.BLACK);
+            hor_lay.setOrientation(LinearLayout.HORIZONTAL);
+            cb.setInputType(InputType.TYPE_NULL);
+            cb.setFocusable(false);
+            hor_lay.addView(cb);
+            Space space=new Space(hor_lay.getContext());
+            space.setMinimumWidth(200);
+            hor_lay.addView(space);
+            EditText person = new EditText(hor_lay.getContext());
+            person.setLayoutParams(hor_lay.getLayoutParams());
+            person.setText(le_array.get(j));
+            person.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            person.setBackgroundResource(R.drawable.make_underline_disappear);
+            person.setInputType(InputType.TYPE_NULL);
+            person.setFocusable(false);
+            hor_lay.addView(person);
+            Space space2=new Space(hor_lay.getContext());
+            space2.setMinimumWidth(200);
+            hor_lay.addView(space2);
+            CBT.add(cb);
+            textViews.add(person);
+            linearLayouts.add(hor_lay);
         }
         CBA=CBT;
+        linearLayoutList=linearLayouts;
+        textViewList=textViews;
+        for (int i=0;i< CBA.size();i++) {
+            int finalI = i;
+            CBA.get(i).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if (isChecked){
+                        textViewList.get(finalI).setTextColor(Color.parseColor("#558d3a"));
+                        linearLayoutList.get(finalI).setBackgroundResource(R.drawable.edit_text_bg_green);
+                    }else{
+                        textViewList.get(finalI).setTextColor(Color.BLACK);
+                        linearLayoutList.get(finalI).setBackgroundResource(R.drawable.edit_text_back_ground);
+                    }
+                   // Log.e("bree", "onCheckedChanged: "+linearLayoutList.get(finalI).getBackground());
+                }
+            });
+        }
     }
     public void pay(View v){
         JSONObject reg_form = new JSONObject();

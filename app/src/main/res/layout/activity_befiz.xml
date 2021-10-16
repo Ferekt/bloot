@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bloot_background"
-    tools:context=".Befiz">
+    android:screenOrientation="portrait"
+    tools:context=".Befiz"
+    >
 
     <TextView
         android:id="@+id/Groupname_bef"
@@ -38,6 +40,8 @@
             android:id="@+id/linlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:showDividers="middle"
+            android:divider="@drawable/margin_bree"
             android:orientation="vertical"></LinearLayout>
     </ScrollView>
 
@@ -46,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
         android:backgroundTint="@color/black"
         android:ems="10"
