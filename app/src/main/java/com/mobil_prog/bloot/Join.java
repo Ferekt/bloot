@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.util.Log;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -112,7 +111,6 @@ public class Join extends AppCompatActivity {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
-            private Object EditText;
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -126,7 +124,6 @@ public class Join extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 JSONObject le_Json = null;
-                String le_String ="";
                 try {
                     le_Json = new JSONObject(response.body().string());
                 } catch (JSONException e) {
